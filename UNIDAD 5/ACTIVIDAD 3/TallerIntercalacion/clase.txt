@@ -1,0 +1,59 @@
+import java.io.Serializable;
+
+class Auto implements Serializable{
+	
+	private String nombreAuto;
+	private String marca;
+	private int año;
+
+	public Auto(String nombreAuto, String marca, int año) {
+		super();
+		this.nombreAuto = nombreAuto;
+		this.marca = marca;
+		this.año = año;
+	}
+
+	public int getAño() {
+		return año;
+	}
+
+	@Override
+	public String toString() {
+		return "Auto [nombreAuto=" + nombreAuto + ", marca=" + marca + ", año=" + año + "]";
+	}
+}
+
+// ---------------------------------------------------
+
+public static void imprimir(String ruta) {
+		
+		ObjectInputStream leer = null;
+		
+		try {
+
+			leer = new ObjectInputStream(new FileInputStream(ruta));
+			
+			while(true) {
+				try {
+
+					System.out.println(leer.readObject());
+
+				} catch (EOFException | ClassNotFoundException e) {
+					break;
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				leer.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}

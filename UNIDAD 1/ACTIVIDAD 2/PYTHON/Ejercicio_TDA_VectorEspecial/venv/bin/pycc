@@ -1,0 +1,3 @@
+#!/home/liza/PycharmProjects/Ejercicio_TDA_VectorEspecial/venv/bin/python
+from numba.pycc import main
+main()
